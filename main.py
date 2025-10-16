@@ -7,15 +7,14 @@ With this program, you can do the following:
 ------------------------------------
 """
 import list_of_states as st
-#import os
-#import time
+import toolbox as tb
 all_50_states = st.us_states
 
 #used to display all US 50 States
 def display_us_states():
   print("\n-----------------\n  50 US STATES \n-----------------\n")
 
-  States = all_50_state
+  states = all_50_states
 
   for i in range(0,len(states)):
     if i<9:
@@ -24,25 +23,25 @@ def display_us_states():
       print("-----------------")
       print('{}-\t{}'.format(i+1,states[i]))
     else:
-      print('{}-\t{}'.format(i+1,stateS[i]))
+      print('{}-\t{}'.format(i+1,states[i]))
 
 
 #Used to search and show a list of states start with the same letter
 def states_alpha_search(first_letter):
-  first_letter = [first_letter.upper()]
+  first_letter = first_letter.upper()
   state_names = []
   num_of_states = 0
   states = all_50_states
 
   for state in states:
-    if state[0] ==first_letter:
+    if state[0] == first_letter:
       num_of_states += 1
       state_names.append(state)
 
-  if num_of_states ==0:
-    print(f"we did not find any state's name start with {first_letter}.")
+  if num_of_states == 0:
+    print(f"We did not find any state's name start with {first_letter}.")
   else:
-    print(f"\nWe Found {num_of_states} States Start with the Letter {first_letter}:")
+    print(f"We Found {num_of_states} States Start with the Letter {first_letter}:")
     print("-------------------------------------------")
     for i in range(len(state_names)):
       print(f"{i+1} - {state_names[i]}")
@@ -84,30 +83,34 @@ def user_selection():
   except ValueError:
     user_input = 0
 
+  tb.clear()
+
   if user_input ==1:
     display_us_states()
   elif user_input == 2:
-    letter = input(" Enter a Letter(A-Z): ")
+    letter = input("Enter a Letter(A-Z): ")
+    tb.clear()
     states_alpha_search(letter)
   elif user_input == 3:
     state = input("Enter a State Name: ")
+    tb.clear()
     us_state_test(state)
-  elif user_Input == 4:
-    in_use =True
+  elif user_input == 4:
+    in_use = False
     print("Thank you and goodbye!")
+
   else:
     print("This is not an option.")
   return in_use
 
 # Program main function
 def main():
+  tb.clear()
   running = True
-
   while running:
     display_menu()
-    running =user_selection()
-    #time.sleep(10)
-    #os.system('clear')
+    running = user_selection()
+    tb.wait()
 
 
 if __name__ == "__main__":
